@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praveen D — Aspiring SOC Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0A0E;
+    --surface: #121218;
+    --border: rgba(255,255,255,0.09);
+    --text-primary: #F6F6F8;
+    --text-secondary: #A6A6B3;
+    --text-muted: #6E6E7C;
+    --violet: #8C6CFF;
+    --coral: #FF6B6B;
+    --lime: #D4FF3F;
+    --font-display: 'Unbounded', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--text-primary); font-family:var(--font-body);
+    line-height:1.6; overflow-x:hidden;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 28px; }
+  ::selection{ background:var(--lime); color:#0A0A0E; }
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:60; background:rgba(10,10,14,0.75);
+    backdrop-filter:blur(12px); border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:18px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{ font-family:var(--font-display); font-weight:700; font-size:16px; letter-spacing:-0.3px; }
+  .logo span{ color:var(--lime); }
+  nav.links{ display:flex; gap:26px; }
+  nav.links a{
+    font-family:var(--font-mono); font-size:11.5px; color:var(--text-secondary);
+    letter-spacing:0.5px; text-transform:uppercase; transition:color 0.2s ease;
+  }
+  nav.links a:hover{ color:var(--lime); }
+  @media (max-width:640px){ nav.links{ display:none; } }
+
+  /* MARQUEE */
+  .marquee-band{
+    background:linear-gradient(90deg, var(--violet), var(--coral));
+    padding:11px 0; overflow:hidden; white-space:nowrap;
+    border-bottom:1px solid var(--border);
+  }
+  .marquee-track{
+    display:inline-flex; gap:40px; animation:scroll-left 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:var(--font-mono); font-weight:700; font-size:13px; color:#0A0A0E;
+    letter-spacing:0.5px; text-transform:uppercase;
+  }
+  @keyframes scroll-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* HERO */
+  .hero{ padding:64px 0 48px; position:relative; }
+  .blob{
+    position:absolute; top:-120px; right:-160px; width:520px; height:520px;
+    background:radial-gradient(circle, rgba(140,108,255,0.35), transparent 70%);
+    filter:blur(20px); z-index:0; animation:pulse-blob 8s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes pulse-blob{ 0%,100%{ opacity:0.6; transform:scale(1); } 50%{ opacity:1; transform:scale(1.1); } }
+
+  .hero-content{ position:relative; z-index:1; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:32px; align-items:center;
+  }
+  @media (max-width:800px){ .hero-grid{ grid-template-columns:1fr; } .hero-visual{ order:-1; max-width:280px; margin:0 auto 20px; } }
+  .hero-visual{ position:relative; z-index:1; }
+  .hero-visual svg{ width:100%; height:auto; display:block; }
+  .float-icon{ animation:float-y 3.4s ease-in-out infinite; }
+  .float-icon.delay1{ animation-delay:0.6s; }
+  .float-icon.delay2{ animation-delay:1.2s; }
+  @keyframes float-y{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-10px); } }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; color:var(--lime);
+    letter-spacing:2px; text-transform:uppercase; margin-bottom:22px;
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid rgba(212,255,63,0.35); padding:6px 14px; border-radius:30px;
+    box-shadow:0 0 0 0 rgba(212,255,63,0.25);
+    animation:badge-glow 2.4s ease-in-out infinite;
+  }
+  .eyebrow .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--lime);
+    box-shadow:0 0 8px var(--lime);
+  }
+  @keyframes badge-glow{
+    0%,100%{ box-shadow:0 0 0 0 rgba(212,255,63,0.18); }
+    50%{ box-shadow:0 0 16px 2px rgba(212,255,63,0.22); }
+  }
+  h1{
+    font-family:var(--font-display); font-weight:900;
+    font-size:clamp(34px, 6.5vw, 76px); line-height:1.0; letter-spacing:-1.5px;
+    margin-bottom:20px; text-transform:uppercase;
+  }
+  h1 .grad{
+    background:linear-gradient(90deg, var(--violet), var(--coral));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-role{
+    font-family:var(--font-display); font-weight:600; font-size:clamp(16px,2.4vw,22px);
+    color:var(--text-secondary); margin-bottom:26px; max-width:600px;
+  }
+  .hero-tagline{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+  .hero-tagline span{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-secondary);
+    letter-spacing:1px; text-transform:uppercase; border:1px solid var(--border);
+    padding:6px 14px; border-radius:20px;
+  }
+  .hero-intro{ font-size:15.5px; color:var(--text-secondary); max-width:560px; margin-bottom:34px; }
+
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px; }
+  .btn{
+    font-family:var(--font-mono); font-weight:700; font-size:13px; letter-spacing:0.5px;
+    padding:14px 26px; border-radius:40px; border:1px solid var(--border);
+    transition:all 0.2s ease; text-transform:uppercase;
+  }
+  .btn-primary{ background:var(--lime); color:#0A0A0E; border-color:var(--lime); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 8px 28px rgba(212,255,63,0.3); }
+  .btn-outline{ color:var(--text-primary); }
+  .btn-outline:hover{ border-color:var(--lime); color:var(--lime); transform:translateY(-2px); }
+
+  .scroll-cue{
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    width:fit-content; margin:44px auto 0; color:var(--text-muted);
+    animation:bounce-y 2s ease-in-out infinite;
+  }
+  .scroll-cue span{ font-family:var(--font-mono); font-size:10.5px; letter-spacing:1.5px; text-transform:uppercase; }
+  @keyframes bounce-y{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(6px); } }
+
+  /* STATS */
+  .stats-row{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:36px;
+    margin-top:44px; padding-top:28px; border-top:1px solid var(--border);
+  }
+  .stat{ display:flex; align-items:baseline; gap:10px; }
+  .stat .num{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(22px,2.8vw,28px);
+    color:var(--lime);
+  }
+  .stat .label{ font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; }
+  @media (max-width:640px){ .stats-row{ gap:24px; } }
+
+  /* SECTIONS */
+  section{ padding:64px 0; border-top:1px solid var(--border); }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:34px; }
+  .section-num{ font-family:var(--font-mono); font-size:13px; color:var(--lime); }
+  h2{
+    font-family:var(--font-display); font-weight:700; font-size:clamp(22px,3vw,30px);
+    letter-spacing:-0.5px; text-transform:uppercase;
+  }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .about-text{ font-size:17px; color:var(--text-secondary); max-width:680px; }
+  .about-text strong{ color:var(--text-primary); font-weight:600; }
+
+  /* skills */
+  .skills-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  @media (max-width:640px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-card{
+    border:1px solid var(--border); border-radius:14px; padding:22px;
+    background:var(--surface); transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .skill-card:hover{ border-color:var(--violet); transform:translateY(-3px); }
+  .skill-card h3{
+    font-family:var(--font-display); font-size:13px; color:var(--lime);
+    letter-spacing:0.5px; text-transform:uppercase; margin-bottom:14px;
+  }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-secondary);
+    border:1px solid var(--border); border-radius:20px; padding:6px 13px;
+  }
+
+  /* projects */
+  .project-card{
+    border:1px solid var(--border); border-radius:16px;
+    background:var(--surface); padding:28px; margin-bottom:18px;
+    transition:transform 0.25s ease, border-color 0.25s ease; position:relative; overflow:hidden;
+  }
+  .project-card:hover{ transform:translateY(-4px); border-color:var(--coral); }
+  .project-card:hover::before{ opacity:1; }
+  .project-card::before{
+    content:''; position:absolute; inset:0; z-index:0; opacity:0; transition:opacity 0.3s ease;
+    background:radial-gradient(circle at top right, rgba(140,108,255,0.15), transparent 60%);
+  }
+  .project-inner{ position:relative; z-index:1; }
+  .project-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px; }
+  .project-title{ font-family:var(--font-display); font-weight:600; font-size:19px; letter-spacing:-0.2px; }
+  .badge{
+    font-family:var(--font-mono); font-size:10px; letter-spacing:1px; text-transform:uppercase;
+    padding:5px 12px; border-radius:20px; font-weight:700;
+  }
+  .badge-major{ background:rgba(255,107,107,0.15); color:var(--coral); border:1px solid rgba(255,107,107,0.35); }
+  .badge-mini{ background:rgba(212,255,63,0.15); color:var(--lime); border:1px solid rgba(212,255,63,0.35); }
+  .project-stack{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-muted); margin-bottom:14px; }
+  .project-card p{ font-size:14.5px; color:var(--text-secondary); }
+
+  /* education */
+  .edu-row{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px;
+    padding:18px 0; border-bottom:1px solid var(--border);
+  }
+  .edu-row:last-child{ border-bottom:none; }
+  .edu-left b{ font-family:var(--font-display); font-size:16px; font-weight:600; }
+  .edu-left div{ font-size:13.5px; color:var(--text-secondary); margin-top:3px; }
+  .edu-right{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-muted); text-align:right; }
+  .edu-right b{ color:var(--lime); display:block; }
+
+  /* certifications */
+  .cert-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .cert-pill{
+    font-family:var(--font-mono); font-size:12.5px; color:var(--text-primary);
+    border:1px solid var(--border); background:var(--surface); border-radius:30px;
+    padding:9px 18px; display:flex; align-items:center; gap:8px;
+  }
+  .cert-pill.progress{ border-color:rgba(212,255,63,0.4); }
+  .cert-pill::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--lime); }
+
+  /* footer */
+  footer{ padding:56px 0 70px; border-top:1px solid var(--border); text-align:center; }
+  .footer-big{
+    font-family:var(--font-display); font-weight:900; font-size:clamp(32px,6vw,64px);
+    text-transform:uppercase; letter-spacing:-1px; margin-bottom:26px;
+  }
+  .footer-links{ display:flex; gap:22px; flex-wrap:wrap; justify-content:center; margin-bottom:20px; }
+  .footer-links a{
+    font-family:var(--font-mono); font-size:13px; color:var(--text-secondary);
+    border:1px solid var(--border); padding:10px 20px; border-radius:30px; transition:all 0.2s ease;
+  }
+  .footer-links a:hover{ border-color:var(--lime); color:var(--lime); }
+  .footer-end{ font-family:var(--font-mono); font-size:11px; color:var(--text-muted); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">PRAVEEN<span>.</span></div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="marquee-band">
+  <div class="marquee-track">
+    <span>NETWORK SECURITY</span><span>★</span><span>THREAT DETECTION</span><span>★</span>
+    <span>INCIDENT RESPONSE</span><span>★</span><span>SIEM</span><span>★</span>
+    <span>eBPF MONITORING</span><span>★</span><span>OPEN TO OPPORTUNITIES</span><span>★</span>
+    <span>NETWORK SECURITY</span><span>★</span><span>THREAT DETECTION</span><span>★</span>
+    <span>INCIDENT RESPONSE</span><span>★</span><span>SIEM</span><span>★</span>
+    <span>eBPF MONITORING</span><span>★</span><span>OPEN TO OPPORTUNITIES</span><span>★</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="hero" style="border-top:none;">
+    <div class="blob"></div>
+    <div class="hero-content">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow"><span class="dot"></span>Available for opportunities</div>
+          <h1>Praveen D<br><span class="grad">SOC Analyst</span></h1>
+          <div class="hero-tagline"><span>Cybersecurity</span><span>&amp;</span><span>Networking</span></div>
+          <div class="hero-role">Final-year AI &amp; Data Science student building toward security operations.</div>
+          <p class="hero-intro">
+            Hands-on with enterprise network security — VLANs, routing, ACLs, DNS/DHCP — plus Wireshark, Nmap, and
+            Kali Linux. Currently pursuing CompTIA Security+. Ready to bring energy to a SOC team.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="mailto:praveen.durgesh06@gmail.com">Get in touch →</a>
+            <a class="btn btn-outline" href="#" id="linkedin-link">LinkedIn</a>
+            <a class="btn btn-outline" href="#" id="github-link">GitHub</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <svg viewBox="0 0 360 480" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8C6CFF"/>
+                <stop offset="100%" stop-color="#FF6B6B"/>
+              </linearGradient>
+              <linearGradient id="screenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#D4FF3F"/>
+                <stop offset="100%" stop-color="#8C6CFF"/>
+              </linearGradient>
+              <radialGradient id="haloGrad" cx="50%" cy="35%" r="60%">
+                <stop offset="0%" stop-color="#8C6CFF" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#8C6CFF" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- halo -->
+            <circle cx="180" cy="190" r="170" fill="url(#haloGrad)"/>
+
+            <!-- chair back -->
+            <path d="M108 150 Q108 118 180 116 Q252 118 252 150 L258 320 Q180 336 102 320 Z" fill="#14141C" stroke="#232332" stroke-width="2"/>
+
+            <!-- ground shadow -->
+            <ellipse cx="180" cy="452" rx="100" ry="14" fill="#000000" opacity="0.35"/>
+
+            <!-- seat -->
+            <rect x="98" y="322" width="164" height="26" rx="12" fill="#181822"/>
+
+            <!-- thighs (bent forward) -->
+            <rect x="110" y="300" width="66" height="32" rx="16" fill="#181822"/>
+            <rect x="184" y="300" width="66" height="32" rx="16" fill="#1E1E29"/>
+
+            <!-- shins -->
+            <rect x="118" y="326" width="32" height="94" rx="16" fill="#181822"/>
+            <rect x="210" y="326" width="32" height="94" rx="16" fill="#1E1E29"/>
+            <!-- shoes -->
+            <rect x="108" y="416" width="52" height="18" rx="9" fill="#0A0A0E" stroke="#D4FF3F" stroke-width="2"/>
+            <rect x="200" y="416" width="52" height="18" rx="9" fill="#0A0A0E" stroke="#D4FF3F" stroke-width="2"/>
+
+            <!-- torso: hoodie -->
+            <path d="M122 220 Q122 186 180 182 Q238 186 238 220 L244 302 Q180 318 116 302 Z" fill="url(#bodyGrad)"/>
+            <!-- hoodie kangaroo pocket -->
+            <path d="M150 264 Q180 278 210 264 L206 300 Q180 310 154 300 Z" fill="#00000022"/>
+            <!-- hoodie drawstrings -->
+            <line x1="172" y1="202" x2="169" y2="232" stroke="#0A0A0E" stroke-width="3" stroke-linecap="round"/>
+            <line x1="188" y1="202" x2="191" y2="232" stroke="#0A0A0E" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="169" cy="234" r="3" fill="#0A0A0E"/>
+            <circle cx="191" cy="234" r="3" fill="#0A0A0E"/>
+
+            <!-- back arm (resting toward keyboard, behind) -->
+            <rect x="120" y="212" width="28" height="88" rx="14" fill="#8C6CFF" transform="rotate(-10 134 212)"/>
+
+            <!-- neck -->
+            <rect x="164" y="158" width="32" height="28" rx="8" fill="#2A2A38"/>
+
+            <!-- hood (behind head) -->
+            <path d="M126 158 Q124 104 180 100 Q236 104 234 158 Q220 126 180 124 Q140 126 126 158 Z" fill="#6C4FE0"/>
+
+            <!-- head -->
+            <circle cx="180" cy="130" r="44" fill="#20202B" stroke="#D4FF3F" stroke-width="2.5"/>
+            <!-- simple face hint -->
+            <circle cx="165" cy="128" r="4.5" fill="#D4FF3F"/>
+            <circle cx="195" cy="128" r="4.5" fill="#D4FF3F"/>
+            <path d="M166 146 Q180 155 194 146" stroke="#D4FF3F" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+            <!-- headset band -->
+            <path d="M136 116 Q180 70 224 116" fill="none" stroke="#0A0A0E" stroke-width="7" stroke-linecap="round"/>
+            <!-- headset ear cups -->
+            <circle cx="136" cy="126" r="14" fill="#0A0A0E" stroke="#D4FF3F" stroke-width="2"/>
+            <circle cx="224" cy="126" r="14" fill="#0A0A0E" stroke="#D4FF3F" stroke-width="2"/>
+            <!-- headset mic -->
+            <path d="M224 138 Q222 160 198 166" fill="none" stroke="#0A0A0E" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="197" cy="167" r="4.5" fill="#D4FF3F"/>
+
+            <!-- front arm (typing on laptop) -->
+            <rect x="212" y="212" width="28" height="86" rx="14" fill="#FF6B6B" transform="rotate(10 226 212)"/>
+
+            <!-- laptop resting on lap -->
+            <rect x="126" y="296" width="108" height="14" rx="4" fill="#0A0A0E" stroke="#3A3A48" stroke-width="1.5"/>
+            <!-- laptop screen -->
+            <rect x="130" y="224" width="100" height="76" rx="6" fill="#101018" stroke="#3A3A48" stroke-width="2" transform="rotate(-2 180 262)"/>
+            <rect x="138" y="232" width="84" height="60" rx="3" fill="url(#screenGrad)" opacity="0.85" transform="rotate(-2 180 262)"/>
+            <!-- padlock icon on screen -->
+            <g transform="rotate(-2 180 262)">
+              <rect x="168" y="258" width="24" height="20" rx="3" fill="#0A0A0E"/>
+              <path d="M172 258 v-8 a8 8 0 0 1 16 0 v8" fill="none" stroke="#0A0A0E" stroke-width="4"/>
+            </g>
+
+            <!-- floating accent icons -->
+            <g class="float-icon">
+              <circle cx="70" cy="150" r="9" fill="none" stroke="#D4FF3F" stroke-width="2.5"/>
+              <path d="M70 141 v-10 M70 168 v-10 M61 150 h-10 M79 150 h10" stroke="#D4FF3F" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <g class="float-icon delay1">
+              <rect x="278" y="180" width="20" height="16" rx="3" fill="none" stroke="#FF6B6B" stroke-width="2.5"/>
+              <path d="M282 180 v-6 a6 6 0 0 1 12 0 v6" fill="none" stroke="#FF6B6B" stroke-width="2.5"/>
+            </g>
+            <g class="float-icon delay2">
+              <circle cx="290" cy="90" r="5" fill="#8C6CFF"/>
+              <circle cx="308" cy="105" r="3.5" fill="#D4FF3F"/>
+              <line x1="290" y1="90" x2="308" y2="105" stroke="#8C6CFF" stroke-width="1.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat"><span class="num">8.05</span><span class="label">CGPA</span></div>
+        <div class="stat"><span class="num">05</span><span class="label">Projects Built</span></div>
+        <div class="stat"><span class="num">2027</span><span class="label">Graduating</span></div>
+      </div>
+
+      <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+        <span>Scroll</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <p class="about-text reveal">
+      I'm working toward a career as a <strong>SOC Analyst</strong> — focused on network security, threat
+      detection, and incident response. I've configured and secured enterprise networks, and gone hands-on
+      with <strong>Wireshark</strong>, <strong>Nmap</strong>, and <strong>Kali Linux</strong>. Currently
+      pursuing <strong>CompTIA Security+</strong>, and looking for an entry-level role where I can bring that
+      energy into real security monitoring and response.
+    </p>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="section-num">02</span><h2>Technical Skills</h2></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>Security &amp; Networking</h3>
+        <div class="tag-row">
+          <span class="tag">TCP/IP</span><span class="tag">VLAN Config</span><span class="tag">Inter-VLAN Routing</span>
+          <span class="tag">Static Routing</span><span class="tag">OSPF</span><span class="tag">DNS</span>
+          <span class="tag">DHCP</span><span class="tag">VTP</span><span class="tag">ACLs</span>
+          <span class="tag">Segmentation</span><span class="tag">SSH Spoofing (basics)</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Security Tools</h3>
+        <div class="tag-row">
+          <span class="tag">Wireshark</span><span class="tag">Nmap</span><span class="tag">Kali Linux</span>
+          <span class="tag">Cisco Packet Tracer</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>DevOps &amp; Security Monitoring</h3>
+        <div class="tag-row">
+          <span class="tag">Docker</span><span class="tag">Jenkins</span><span class="tag">Kubernetes</span>
+          <span class="tag">eBPF (runtime monitoring)</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Programming &amp; Analytics</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">C</span><span class="tag">Java (basic)</span>
+          <span class="tag">SQL</span><span class="tag">Power BI</span><span class="tag">Excel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><span class="section-num">03</span><h2>Projects</h2></div>
+
+    <div class="project-card reveal">
+      <div class="project-inner">
+        <div class="project-head">
+          <div class="project-title">CI/CD Pipeline for Full-Stack Web Application using eBPF</div>
+          <span class="badge badge-major">Major Project</span>
+        </div>
+        <div class="project-stack">Docker · Jenkins · Kubernetes · eBPF</div>
+        <p>Designed a DevOps pipeline for automated build, integration, and deployment of a full-stack web
+        application. Integrated eBPF-based runtime security monitoring to detect anomalous system-call and
+        process behavior — combining DevOps automation with real security observability.</p>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-inner">
+        <div class="project-head">
+          <div class="project-title">CI/CD Pipeline for Full-Stack Web Application</div>
+          <span class="badge badge-mini">Mini Project</span>
+        </div>
+        <div class="project-stack">Docker · Jenkins · Kubernetes</div>
+        <p>Implemented a DevOps pipeline for automated build, integration, deployment, and monitoring —
+        practical exposure to secure deployment and infrastructure automation.</p>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-inner">
+        <div class="project-head"><div class="project-title">Smart Campus Network</div></div>
+        <div class="project-stack">Cisco Packet Tracer</div>
+        <p>Designed a smart campus network with VLANs, inter-VLAN routing, DHCP, DNS, and web services —
+        routers, switches, and servers configured for secure connectivity.</p>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-inner">
+        <div class="project-head"><div class="project-title">Enterprise Office Network</div></div>
+        <div class="project-stack">Cisco Packet Tracer</div>
+        <p>Built an enterprise office network with department VLANs, OSPF routing, NAT, ACLs, DHCP, and DNS
+        services for secure, scalable connectivity.</p>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-inner">
+        <div class="project-head"><div class="project-title">Agri Connect — Farmer Marketplace Platform</div></div>
+        <div class="project-stack">Web Application</div>
+        <p>Developed a web platform connecting farmers directly with buyers to improve market access and
+        reduce intermediaries.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head"><span class="section-num">04</span><h2>Education</h2></div>
+    <div class="reveal">
+      <div class="edu-row">
+        <div class="edu-left"><b>Shridevi Institute of Engineering and Technology, Tumkur</b><div>B.E. in Artificial Intelligence and Data Science</div></div>
+        <div class="edu-right"><b>2023 – 2027</b>CGPA: 8.05</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-left"><b>Morarji Desai Residential PU College, Chitradurga</b><div>2nd PUC</div></div>
+        <div class="edu-right"><b>2023</b>78%</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-left"><b>Morarji Desai Residential School, Chitradurga</b><div>SSLC</div></div>
+        <div class="edu-right"><b>2021</b>89.12%</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="section-num">05</span><h2>Certifications</h2></div>
+    <div class="cert-row reveal">
+      <div class="cert-pill progress">CompTIA Security+ — In Progress</div>
+      <div class="cert-pill">Cybersecurity Workshops / Bootcamps</div>
+      <div class="cert-pill">Power BI Workshop</div>
+      <div class="cert-pill">Cisco / Networking Training</div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-big reveal">Let's Talk</div>
+    <div class="footer-links reveal">
+      <a href="mailto:praveen.durgesh06@gmail.com">praveen.durgesh06@gmail.com</a>
+      <a href="tel:+917795143853">+91-7795143853</a>
+      <a href="#" id="linkedin-link-2">LinkedIn</a>
+      <a href="#" id="github-link-2">GitHub</a>
+    </div>
+    <div class="footer-end">Chitradurga, Karnataka, India — open to SOC Analyst opportunities</div>
+  </footer>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('#linkedin-link, #linkedin-link-2').forEach(a => a.href = 'https://www.linkedin.com/');
+  document.querySelectorAll('#github-link, #github-link-2').forEach(a => a.href = 'https://github.com/');
+</script>
+
+</body>
+</html>
